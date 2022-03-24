@@ -1,5 +1,7 @@
 package model
 
+import "time"
+
 type AdminRequest struct {
 	FirstName   string
 	MiddleName  string
@@ -7,12 +9,21 @@ type AdminRequest struct {
 	PhoneNumber int64
 	Address     ResidentialInfo
 	Role        string
-	DOJ         Time
-	DOL         Time
-	IsDelete    bool
+	DOJ         time.Time
+	DOL         time.Time
 }
 
-type SearchAdminRequest struct {
-	FirstName      string `json:"firstname"`
-	EmployeeNumber string `json:"employeeNumber"`
+type SearchAdmin struct {
+	FirstName  string
+	EmployeeID string
+}
+
+type UpdateAdmin struct {
+	AdminRequest AdminRequest
+	EmployeeId   string
+}
+
+type UpdateAdminRequest struct {
+	EmployeeId   string
+	PayStructure AdministratorPayStructure
 }

@@ -18,6 +18,5 @@ func main() {
 	defer mongoConfig.Close(client, ctx, cancel)
 
 	//to check the connectivity status for database
-	// Ping mongoDB with Ping method
 	//mongoConfig.Ping(client, ctx)
 }

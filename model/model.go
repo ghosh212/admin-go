@@ -3,22 +3,26 @@ package model
 import "time"
 
 type Administrator struct {
-	EmployeeNumber string
-	FirstName      string
-	MiddleName     string
-	Lastname       string
-	PhoneNumber    int64
-	Address        ResidentialInfo
-	Role           string
-	DOJ            Time
-	DOL            Time
-	IsDelete       bool
-	Pay            PayStrucrure
+	EmployeeID   string
+	FirstName    string
+	MiddleName   string
+	Lastname     string
+	PhoneNumber  int64
+	Address      ResidentialInfo
+	Role         string
+	DOJ          time.Time
+	DOL          time.Time
+	IsDelete     bool
+	IsMarried    MaritialStatus
+	PayStrucrure AdministratorPayStructure
 }
 
-type Time struct {
-	Month time.Month
-	Year  int64
+type AdministratorPayStructure struct {
+	EmployeeID   string
+	FirstName    string
+	MiddleName   string
+	Lastname     string
+	PayStrucrure PayStrucrure
 }
 
 type ResidentialInfo struct {
@@ -48,4 +52,12 @@ type Tax struct {
 	TotalTax           float64
 	TaxPaid            float64
 	TaxRemaining       float64
+}
+
+type MaritialStatus struct {
+	IsMarried        bool
+	SpouseFirstName  string
+	SpouseMiddleName string
+	SpouseLastName   string
+	Address          ResidentialInfo
 }
