@@ -9,9 +9,10 @@ import (
 )
 
 var (
-	ErrBadRequest = errors.New("BAD REQUEST")
-	ErrInsertFail = errors.New("INSERT INTO SB NOT SUCCESSFULL")
-	ErrNotFound   = errors.New("NOT FOUND")
+	ErrBadRequest            = errors.New("BAD REQUEST")
+	ErrInsertFail            = errors.New("INSERT INTO SB NOT SUCCESSFULL")
+	ErrNotFound              = errors.New("NOT FOUND")
+	ErrOccuredDuringUpdation = errors.New("ERROR OCCURED DURING UPDATION")
 )
 
 type Endpoint struct {
@@ -42,7 +43,7 @@ func makeSearchAdminEndpoint(s Service) endpoint.Endpoint {
 
 func makeCreateAdminEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		req, ok := request.(model.AdminRequest)
+		req, ok := request.(model.AdminCreationRequest)
 		if !ok {
 			return err, ErrBadRequest
 		}
@@ -52,7 +53,7 @@ func makeCreateAdminEndpoint(s Service) endpoint.Endpoint {
 
 func makeUpdateAdmin(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		req, ok := request.(model.UpdateAdmin)
+		req, ok := request.(model.AdminUpdateRequest)
 		if !ok {
 			return err, ErrBadRequest
 		}
@@ -62,7 +63,7 @@ func makeUpdateAdmin(s Service) endpoint.Endpoint {
 
 func makeUpdateAdminSalaryEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		req, ok := request.(model.UpdateAdminRequest)
+		req, ok := request.(model.UpdateAdminPayRequest)
 		if !ok {
 			return err, ErrBadRequest
 		}

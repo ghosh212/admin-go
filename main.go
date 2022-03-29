@@ -1,13 +1,25 @@
 package main
 
 import (
+	"admin-go/base"
 	mongoConfig "admin-go/config"
 	"fmt"
+	"log"
 )
 
-func main() {
-	fmt.Println("Hellow World from Go")
+const basePath = "/" + "admin" + "/"
+const port = ":8080"
 
+func main() {
+	fmt.Println("Let Us Begin")
+	var s base.Service
+	//making server endpoints
+	e := base.MakeServerEndpoints(s)
+	go func() {
+		log.Default().Println("APPLICATION STARTING UP")
+		//http.ListenAndServe()
+	}()
+	base.MakeHTTPPHandler(e, basePath, port)
 	//mongo db connection
 	client, ctx, cancel, err := mongoConfig.Connect("mongodb://localhost:27017")
 	if err != nil {
@@ -19,4 +31,5 @@ func main() {
 
 	//to check the connectivity status for database
 	//mongoConfig.Ping(client, ctx)
+
 }

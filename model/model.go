@@ -1,7 +1,5 @@
 package model
 
-import "time"
-
 type Administrator struct {
 	EmployeeID   string
 	FirstName    string
@@ -10,30 +8,22 @@ type Administrator struct {
 	PhoneNumber  int64
 	Address      ResidentialInfo
 	Role         string
-	DOJ          time.Time
-	DOL          time.Time
+	DOJ          int64
+	DOL          int64
 	IsDelete     bool
 	IsMarried    MaritialStatus
-	PayStrucrure AdministratorPayStructure
-}
-
-type AdministratorPayStructure struct {
-	EmployeeID   string
-	FirstName    string
-	MiddleName   string
-	Lastname     string
-	PayStrucrure PayStrucrure
+	PayStrucrure PayStruture
 }
 
 type ResidentialInfo struct {
-	HouseNumber int64
-	Street      string
-	Lane        string
-	LandMark    string
-	Pincode     int64
+	HouseNumber int64  `json:"houseNumber"`
+	Street      string `json:"street"`
+	Lane        string `json:"lane"`
+	LandMark    string `json:"landmark"`
+	Pincode     int64  `json:"pincode"`
 }
 
-type PayStrucrure struct {
+type PayStruture struct {
 	Salary             Salary
 	YearsOfService     float64
 	LastHikePercentage float64
@@ -55,9 +45,9 @@ type Tax struct {
 }
 
 type MaritialStatus struct {
-	IsMarried        bool
-	SpouseFirstName  string
-	SpouseMiddleName string
-	SpouseLastName   string
-	Address          ResidentialInfo
+	IsMarried        bool            `json:"isMarried"`
+	SpouseFirstName  string          `json:"spouceFirstName"`
+	SpouseMiddleName string          `json:"spouceMiddleName"`
+	SpouseLastName   string          `json:"spouceLastsName"`
+	Address          ResidentialInfo `json:"address"`
 }
